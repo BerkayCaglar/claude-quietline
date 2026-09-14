@@ -11,7 +11,7 @@ Notable changes to this project. The format follows
 ### Changed
 
 - The README now shows the status line: pictures rendered from the code in light and dark, an
-  animated walk through a session, a screenshot from Claude Code, and the line at five terminal
+  animated walk through a session, a screenshot from Claude Code, and the line at four terminal
   widths.
 
 ### Added

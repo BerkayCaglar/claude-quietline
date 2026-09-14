@@ -60,7 +60,7 @@ the folder and the effort level. The dotted underlines are the links to the lege
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/BerkayCaglar/claude-quietline/main/docs/media/narrow-dark.svg">
-  <img alt="The same status line at 120, 100, 80, 60 and 40 columns: segments give way one by one and the context bar stays" src="https://raw.githubusercontent.com/BerkayCaglar/claude-quietline/main/docs/media/narrow-light.svg" width="100%">
+  <img alt="The same status line at 100, 80, 60 and 40 columns: segments give way one by one and the context bar stays" src="https://raw.githubusercontent.com/BerkayCaglar/claude-quietline/main/docs/media/narrow-light.svg" width="100%">
 </picture>
 
 As the terminal narrows, segments give way in a fixed order; the context bar goes last.

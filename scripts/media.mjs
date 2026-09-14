@@ -35,7 +35,7 @@ const THEMES = {
         fg: '#3b3b3b',
         caption: '#6f6f6f',
         dim: 0.25,
-        ansi: { 31: '#cd3131', 32: '#00a36c', 33: '#b08800', 34: '#0451a5', 35: '#bc05bc', 36: '#0598bc' },
+        ansi: { 31: '#cd3131', 32: '#00a36c', 33: '#8a6a00', 34: '#0451a5', 35: '#bc05bc', 36: '#0598bc' },
     },
 };
 
@@ -181,7 +181,8 @@ const STORY = [
 ];
 const FRAME_SECONDS = 2.6;
 
-const NARROW = [120, 100, 80, 60, 40];
+// The full-width line is the hero; this picture is about what gives way.
+const NARROW = [100, 80, 60, 40];
 
 function hero(t) {
     const width = PAD * 2 + COLS * CW;
@@ -221,7 +222,7 @@ function story(t) {
 
 function narrow(t) {
     const labelCols = 9;
-    const width = PAD * 2 + (labelCols + COLS) * CW + 12;
+    const width = PAD * 2 + (labelCols + Math.max(...NARROW)) * CW + 12;
     const x0 = PAD + labelCols * CW;
     const step = LINE + 10;
     const body = NARROW.map((cols, i) => {
@@ -234,7 +235,7 @@ function narrow(t) {
         ].join('');
     }).join('\n');
     const height = TOP + 22 + (NARROW.length - 1) * step + 22;
-    return windowSvg(t, { width, height, label: 'The status line at five terminal widths: segments give way in a fixed order, the context bar last', body });
+    return windowSvg(t, { width, height, label: 'The status line at four terminal widths: segments give way in a fixed order, the context bar last', body });
 }
 
 export function buildMedia() {

@@ -37,6 +37,11 @@ fixture in `test/fixtures/` across a range of terminal widths. When you change w
 prints on purpose, regenerate the goldens with `node test/tools/update-golden.mjs` and review the
 diff: it should touch only what you meant to change.
 
+The README's pictures in `docs/media/*.svg` are rendered from the same code by
+`scripts/media.mjs`. After a change to the output, run `npm run media` as well;
+`test/media.test.mjs` fails while a committed picture is stale. `docs/media/claude-code.png` is a
+real screenshot and is not generated.
+
 ## Pull requests
 
 - Keep a pull request to one change, and add it to `CHANGELOG.md` under "Unreleased".

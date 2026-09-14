@@ -1,0 +1,178 @@
+{
+  "40": [
+    {
+      "id": "a",
+      "content": "\u001b[2;32m▸\u001b[0m \u001b[2;36mHaiku 4.5           \u001b[0m\u001b[2m | \u001b[0m\u001b[2mmy-app\u001b[0m\u001b[2m | \u001b[0m\u001b]8;;<legend:agents>\u0007\u001b[2;36mExplore        \u001b[0m\u001b]8;;\u0007\u001b[2m | \u001b[0m\u001b[2mxhigh \u001b[0m\u001b[2m | \u001b[0m\u001b[2;32m██░░░░░░ 21%\u001b[0m \u001b[2m 42k/200k\u001b[0m\u001b[2m | \u001b[0m\u001b[2m  12s\u001b[0m"
+    },
+    {
+      "id": "b",
+      "content": "\u001b[2m◦\u001b[0m \u001b[2;36m                    \u001b[0m\u001b[2m | \u001b[0m\u001b[2mmy-app\u001b[0m\u001b[2m | \u001b[0m\u001b]8;;<legend:agents>\u0007\u001b[2;36mPlan           \u001b[0m\u001b]8;;\u0007\u001b[2m | \u001b[0m\u001b[2mxhigh \u001b[0m\u001b[2m | \u001b[0m             \u001b[2m         \u001b[0m\u001b[2m | \u001b[0m\u001b[2m     \u001b[0m"
+    },
+    {
+      "id": "c",
+      "content": "\u001b[2;34m✓\u001b[0m \u001b[2;36mSonnet 5            \u001b[0m\u001b[2m | \u001b[0m\u001b[2mmy-app\u001b[0m\u001b[2m | \u001b[0m\u001b]8;;<legend:agents>\u0007\u001b[2;36mgeneral-purpose\u001b[0m\u001b]8;;\u0007\u001b[2m | \u001b[0m\u001b[2;35mmedium\u001b[0m\u001b[2m | \u001b[0m\u001b[2;33m██████░░ 80%\u001b[0m \u001b[2m160k/200k\u001b[0m\u001b[2m | \u001b[0m\u001b[2m1h02m\u001b[0m"
+    },
+    {
+      "id": "d",
+      "content": "\u001b[2;31m✗\u001b[0m \u001b[2;36mFable 5.1           \u001b[0m\u001b[2m | \u001b[0m\u001b[2mmy-app\u001b[0m\u001b[2m | \u001b[0m\u001b]8;;<legend:agents>\u0007\u001b[2;36mreviewer       \u001b[0m\u001b]8;;\u0007\u001b[2m | \u001b[0m\u001b[2mxhigh \u001b[0m\u001b[2m | \u001b[0m\u001b[2;31m████████ 95%\u001b[0m \u001b[2m  950k/1M\u001b[0m\u001b[2m | \u001b[0m\u001b[2m1m01s\u001b[0m"
+    },
+    {
+      "id": "e",
+      "content": "\u001b[2;33m⊘\u001b[0m \u001b[2;36msome-custom-model-w…\u001b[0m\u001b[2m | \u001b[0m\u001b[2mmy-app\u001b[0m\u001b[2m | \u001b[0m\u001b]8;;<legend:agents>\u0007\u001b[2;36mcustom         \u001b[0m\u001b]8;;\u0007\u001b[2m | \u001b[0m\u001b[2mxhigh \u001b[0m\u001b[2m | \u001b[0m             \u001b[2m       5k\u001b[0m\u001b[2m | \u001b[0m\u001b[2m     \u001b[0m"
+    }
+  ],
+  "60": [
+    {
+      "id": "a",
+      "content": "\u001b[2;32m▸\u001b[0m \u001b[2;36mHaiku 4.5           \u001b[0m\u001b[2m | \u001b[0m\u001b[2mmy-app\u001b[0m\u001b[2m | \u001b[0m\u001b]8;;<legend:agents>\u0007\u001b[2;36mExplore        \u001b[0m\u001b]8;;\u0007\u001b[2m | \u001b[0m\u001b[2mxhigh \u001b[0m\u001b[2m | \u001b[0m\u001b[2;32m██░░░░░░ 21%\u001b[0m \u001b[2m 42k/200k\u001b[0m\u001b[2m | \u001b[0m\u001b[2m  12s\u001b[0m"
+    },
+    {
+      "id": "b",
+      "content": "\u001b[2m◦\u001b[0m \u001b[2;36m                    \u001b[0m\u001b[2m | \u001b[0m\u001b[2mmy-app\u001b[0m\u001b[2m | \u001b[0m\u001b]8;;<legend:agents>\u0007\u001b[2;36mPlan           \u001b[0m\u001b]8;;\u0007\u001b[2m | \u001b[0m\u001b[2mxhigh \u001b[0m\u001b[2m | \u001b[0m             \u001b[2m         \u001b[0m\u001b[2m | \u001b[0m\u001b[2m     \u001b[0m"
+    },
+    {
+      "id": "c",
+      "content": "\u001b[2;34m✓\u001b[0m \u001b[2;36mSonnet 5            \u001b[0m\u001b[2m | \u001b[0m\u001b[2mmy-app\u001b[0m\u001b[2m | \u001b[0m\u001b]8;;<legend:agents>\u0007\u001b[2;36mgeneral-purpose\u001b[0m\u001b]8;;\u0007\u001b[2m | \u001b[0m\u001b[2;35mmedium\u001b[0m\u001b[2m | \u001b[0m\u001b[2;33m██████░░ 80%\u001b[0m \u001b[2m160k/200k\u001b[0m\u001b[2m | \u001b[0m\u001b[2m1h02m\u001b[0m"
+    },
+    {
+      "id": "d",
+      "content": "\u001b[2;31m✗\u001b[0m \u001b[2;36mFable 5.1           \u001b[0m\u001b[2m | \u001b[0m\u001b[2mmy-app\u001b[0m\u001b[2m | \u001b[0m\u001b]8;;<legend:agents>\u0007\u001b[2;36mreviewer       \u001b[0m\u001b]8;;\u0007\u001b[2m | \u001b[0m\u001b[2mxhigh \u001b[0m\u001b[2m | \u001b[0m\u001b[2;31m████████ 95%\u001b[0m \u001b[2m  950k/1M\u001b[0m\u001b[2m | \u001b[0m\u001b[2m1m01s\u001b[0m"
+    },
+    {
+      "id": "e",
+      "content": "\u001b[2;33m⊘\u001b[0m \u001b[2;36msome-custom-model-w…\u001b[0m\u001b[2m | \u001b[0m\u001b[2mmy-app\u001b[0m\u001b[2m | \u001b[0m\u001b]8;;<legend:agents>\u0007\u001b[2;36mcustom         \u001b[0m\u001b]8;;\u0007\u001b[2m | \u001b[0m\u001b[2mxhigh \u001b[0m\u001b[2m | \u001b[0m             \u001b[2m       5k\u001b[0m\u001b[2m | \u001b[0m\u001b[2m     \u001b[0m"
+    }
+  ],
+  "80": [
+    {
+      "id": "a",
+      "content": "\u001b[2;32m▸\u001b[0m \u001b[2;36mHaiku 4.5           \u001b[0m\u001b[2m | \u001b[0m\u001b[2mmy-app\u001b[0m\u001b[2m | \u001b[0m\u001b]8;;<legend:agents>\u0007\u001b[2;36mExplore        \u001b[0m\u001b]8;;\u0007\u001b[2m | \u001b[0m\u001b[2mxhigh \u001b[0m\u001b[2m | \u001b[0m\u001b[2;32m██░░░░░░ 21%\u001b[0m \u001b[2m 42k/200k\u001b[0m\u001b[2m | \u001b[0m\u001b[2m  12s\u001b[0m"
+    },
+    {
+      "id": "b",
+      "content": "\u001b[2m◦\u001b[0m \u001b[2;36m                    \u001b[0m\u001b[2m | \u001b[0m\u001b[2mmy-app\u001b[0m\u001b[2m | \u001b[0m\u001b]8;;<legend:agents>\u0007\u001b[2;36mPlan           \u001b[0m\u001b]8;;\u0007\u001b[2m | \u001b[0m\u001b[2mxhigh \u001b[0m\u001b[2m | \u001b[0m             \u001b[2m         \u001b[0m\u001b[2m | \u001b[0m\u001b[2m     \u001b[0m"
+    },
+    {
+      "id": "c",
+      "content": "\u001b[2;34m✓\u001b[0m \u001b[2;36mSonnet 5            \u001b[0m\u001b[2m | \u001b[0m\u001b[2mmy-app\u001b[0m\u001b[2m | \u001b[0m\u001b]8;;<legend:agents>\u0007\u001b[2;36mgeneral-purpose\u001b[0m\u001b]8;;\u0007\u001b[2m | \u001b[0m\u001b[2;35mmedium\u001b[0m\u001b[2m | \u001b[0m\u001b[2;33m██████░░ 80%\u001b[0m \u001b[2m160k/200k\u001b[0m\u001b[2m | \u001b[0m\u001b[2m1h02m\u001b[0m"
+    },
+    {
+      "id": "d",
+      "content": "\u001b[2;31m✗\u001b[0m \u001b[2;36mFable 5.1           \u001b[0m\u001b[2m | \u001b[0m\u001b[2mmy-app\u001b[0m\u001b[2m | \u001b[0m\u001b]8;;<legend:agents>\u0007\u001b[2;36mreviewer       \u001b[0m\u001b]8;;\u0007\u001b[2m | \u001b[0m\u001b[2mxhigh \u001b[0m\u001b[2m | \u001b[0m\u001b[2;31m████████ 95%\u001b[0m \u001b[2m  950k/1M\u001b[0m\u001b[2m | \u001b[0m\u001b[2m1m01s\u001b[0m"
+    },
+    {
+      "id": "e",
+      "content": "\u001b[2;33m⊘\u001b[0m \u001b[2;36msome-custom-model-w…\u001b[0m\u001b[2m | \u001b[0m\u001b[2mmy-app\u001b[0m\u001b[2m | \u001b[0m\u001b]8;;<legend:agents>\u0007\u001b[2;36mcustom         \u001b[0m\u001b]8;;\u0007\u001b[2m | \u001b[0m\u001b[2mxhigh \u001b[0m\u001b[2m | \u001b[0m             \u001b[2m       5k\u001b[0m\u001b[2m | \u001b[0m\u001b[2m     \u001b[0m"
+    }
+  ],
+  "100": [
+    {
+      "id": "a",
+      "content": "\u001b[2;32m▸\u001b[0m \u001b[2;36mHaiku 4.5           \u001b[0m\u001b[2m | \u001b[0m\u001b[2mmy-app\u001b[0m\u001b[2m | \u001b[0m\u001b]8;;<legend:agents>\u0007\u001b[2;36mExplore        \u001b[0m\u001b]8;;\u0007     \u001b[2m | \u001b[0m\u001b[2mxhigh \u001b[0m\u001b[2m | \u001b[0m\u001b[2;32m██░░░░░░░░ 21%\u001b[0m \u001b[2m 42k/200k\u001b[0m\u001b[2m | \u001b[0m\u001b[2m  12s\u001b[0m"
+    },
+    {
+      "id": "b",
+      "content": "\u001b[2m◦\u001b[0m \u001b[2;36m                    \u001b[0m\u001b[2m | \u001b[0m\u001b[2mmy-app\u001b[0m\u001b[2m | \u001b[0m\u001b]8;;<legend:agents>\u0007\u001b[2;36mPlan           \u001b[0m\u001b]8;;\u0007     \u001b[2m | \u001b[0m\u001b[2mxhigh \u001b[0m\u001b[2m | \u001b[0m               \u001b[2m         \u001b[0m\u001b[2m | \u001b[0m\u001b[2m     \u001b[0m"
+    },
+    {
+      "id": "c",
+      "content": "\u001b[2;34m✓\u001b[0m \u001b[2;36mSonnet 5            \u001b[0m\u001b[2m | \u001b[0m\u001b[2mmy-app\u001b[0m\u001b[2m | \u001b[0m\u001b]8;;<legend:agents>\u0007\u001b[2;36mgeneral-purpose\u001b[0m\u001b]8;;\u0007     \u001b[2m | \u001b[0m\u001b[2;35mmedium\u001b[0m\u001b[2m | \u001b[0m\u001b[2;33m████████░░ 80%\u001b[0m \u001b[2m160k/200k\u001b[0m\u001b[2m | \u001b[0m\u001b[2m1h02m\u001b[0m"
+    },
+    {
+      "id": "d",
+      "content": "\u001b[2;31m✗\u001b[0m \u001b[2;36mFable 5.1           \u001b[0m\u001b[2m | \u001b[0m\u001b[2mmy-app\u001b[0m\u001b[2m | \u001b[0m\u001b]8;;<legend:agents>\u0007\u001b[2;36mreviewer       \u001b[0m\u001b]8;;\u0007     \u001b[2m | \u001b[0m\u001b[2mxhigh \u001b[0m\u001b[2m | \u001b[0m\u001b[2;31m██████████ 95%\u001b[0m \u001b[2m  950k/1M\u001b[0m\u001b[2m | \u001b[0m\u001b[2m1m01s\u001b[0m"
+    },
+    {
+      "id": "e",
+      "content": "\u001b[2;33m⊘\u001b[0m \u001b[2;36msome-custom-model-w…\u001b[0m\u001b[2m | \u001b[0m\u001b[2mmy-app\u001b[0m\u001b[2m | \u001b[0m\u001b]8;;<legend:agents>\u0007\u001b[2;36mcustom         \u001b[0m\u001b]8;;\u0007     \u001b[2m | \u001b[0m\u001b[2mxhigh \u001b[0m\u001b[2m | \u001b[0m               \u001b[2m       5k\u001b[0m\u001b[2m | \u001b[0m\u001b[2m     \u001b[0m"
+    }
+  ],
+  "120": [
+    {
+      "id": "a",
+      "content": "\u001b[2;32m▸\u001b[0m \u001b[2;36mHaiku 4.5           \u001b[0m\u001b[2m | \u001b[0m\u001b[2mmy-app\u001b[0m\u001b[2m | \u001b[0m\u001b]8;;<legend:agents>\u0007\u001b[2;36mExplore        \u001b[0m\u001b]8;;\u0007 \u001b[2mFind the settings writer\u001b[0m\u001b[2m | \u001b[0m\u001b[2mxhigh \u001b[0m\u001b[2m | \u001b[0m\u001b[2;32m██░░░░░░░░ 21%\u001b[0m \u001b[2m 42k/200k\u001b[0m\u001b[2m | \u001b[0m\u001b[2m  12s\u001b[0m"
+    },
+    {
+      "id": "b",
+      "content": "\u001b[2m◦\u001b[0m \u001b[2;36m                    \u001b[0m\u001b[2m | \u001b[0m\u001b[2mmy-app\u001b[0m\u001b[2m | \u001b[0m\u001b]8;;<legend:agents>\u0007\u001b[2;36mPlan           \u001b[0m\u001b]8;;\u0007 \u001b[2mDesign the installer\u001b[0m    \u001b[2m | \u001b[0m\u001b[2mxhigh \u001b[0m\u001b[2m | \u001b[0m               \u001b[2m         \u001b[0m\u001b[2m | \u001b[0m\u001b[2m     \u001b[0m"
+    },
+    {
+      "id": "c",
+      "content": "\u001b[2;34m✓\u001b[0m \u001b[2;36mSonnet 5            \u001b[0m\u001b[2m | \u001b[0m\u001b[2mmy-app\u001b[0m\u001b[2m | \u001b[0m\u001b]8;;<legend:agents>\u0007\u001b[2;36mgeneral-purpose\u001b[0m\u001b]8;;\u0007 \u001b[2mCapture golden outputs\u001b[0m  \u001b[2m | \u001b[0m\u001b[2;35mmedium\u001b[0m\u001b[2m | \u001b[0m\u001b[2;33m████████░░ 80%\u001b[0m \u001b[2m160k/200k\u001b[0m\u001b[2m | \u001b[0m\u001b[2m1h02m\u001b[0m"
+    },
+    {
+      "id": "d",
+      "content": "\u001b[2;31m✗\u001b[0m \u001b[2;36mFable 5.1           \u001b[0m\u001b[2m | \u001b[0m\u001b[2mmy-app\u001b[0m\u001b[2m | \u001b[0m\u001b]8;;<legend:agents>\u0007\u001b[2;36mreviewer       \u001b[0m\u001b]8;;\u0007 \u001b[2mReview the diff\u001b[0m         \u001b[2m | \u001b[0m\u001b[2mxhigh \u001b[0m\u001b[2m | \u001b[0m\u001b[2;31m██████████ 95%\u001b[0m \u001b[2m  950k/1M\u001b[0m\u001b[2m | \u001b[0m\u001b[2m1m01s\u001b[0m"
+    },
+    {
+      "id": "e",
+      "content": "\u001b[2;33m⊘\u001b[0m \u001b[2;36msome-custom-model-w…\u001b[0m\u001b[2m | \u001b[0m\u001b[2mmy-app\u001b[0m\u001b[2m | \u001b[0m\u001b]8;;<legend:agents>\u0007\u001b[2;36mcustom         \u001b[0m\u001b]8;;\u0007 \u001b[2mStopped by user\u001b[0m         \u001b[2m | \u001b[0m\u001b[2mxhigh \u001b[0m\u001b[2m | \u001b[0m               \u001b[2m       5k\u001b[0m\u001b[2m | \u001b[0m\u001b[2m     \u001b[0m"
+    }
+  ],
+  "140": [
+    {
+      "id": "a",
+      "content": "\u001b[2;32m▸\u001b[0m \u001b[2;36mHaiku 4.5           \u001b[0m\u001b[2m | \u001b[0m\u001b[2mmy-app\u001b[0m\u001b[2m | \u001b[0m\u001b]8;;<legend:agents>\u0007\u001b[2;36mExplore        \u001b[0m\u001b]8;;\u0007 \u001b[2mFind the settings writer\u001b[0m              \u001b[2m | \u001b[0m\u001b[2mxhigh \u001b[0m\u001b[2m | \u001b[0m\u001b[2;32m███░░░░░░░░░░░░░ 21%\u001b[0m \u001b[2m 42k/200k\u001b[0m\u001b[2m | \u001b[0m\u001b[2m  12s\u001b[0m"
+    },
+    {
+      "id": "b",
+      "content": "\u001b[2m◦\u001b[0m \u001b[2;36m                    \u001b[0m\u001b[2m | \u001b[0m\u001b[2mmy-app\u001b[0m\u001b[2m | \u001b[0m\u001b]8;;<legend:agents>\u0007\u001b[2;36mPlan           \u001b[0m\u001b]8;;\u0007 \u001b[2mDesign the installer\u001b[0m                  \u001b[2m | \u001b[0m\u001b[2mxhigh \u001b[0m\u001b[2m | \u001b[0m                     \u001b[2m         \u001b[0m\u001b[2m | \u001b[0m\u001b[2m     \u001b[0m"
+    },
+    {
+      "id": "c",
+      "content": "\u001b[2;34m✓\u001b[0m \u001b[2;36mSonnet 5            \u001b[0m\u001b[2m | \u001b[0m\u001b[2mmy-app\u001b[0m\u001b[2m | \u001b[0m\u001b]8;;<legend:agents>\u0007\u001b[2;36mgeneral-purpose\u001b[0m\u001b]8;;\u0007 \u001b[2mCapture golden outputs\u001b[0m                \u001b[2m | \u001b[0m\u001b[2;35mmedium\u001b[0m\u001b[2m | \u001b[0m\u001b[2;33m█████████████░░░ 80%\u001b[0m \u001b[2m160k/200k\u001b[0m\u001b[2m | \u001b[0m\u001b[2m1h02m\u001b[0m"
+    },
+    {
+      "id": "d",
+      "content": "\u001b[2;31m✗\u001b[0m \u001b[2;36mFable 5.1           \u001b[0m\u001b[2m | \u001b[0m\u001b[2mmy-app\u001b[0m\u001b[2m | \u001b[0m\u001b]8;;<legend:agents>\u0007\u001b[2;36mreviewer       \u001b[0m\u001b]8;;\u0007 \u001b[2mReview the diff\u001b[0m                       \u001b[2m | \u001b[0m\u001b[2mxhigh \u001b[0m\u001b[2m | \u001b[0m\u001b[2;31m███████████████░ 95%\u001b[0m \u001b[2m  950k/1M\u001b[0m\u001b[2m | \u001b[0m\u001b[2m1m01s\u001b[0m"
+    },
+    {
+      "id": "e",
+      "content": "\u001b[2;33m⊘\u001b[0m \u001b[2;36msome-custom-model-w…\u001b[0m\u001b[2m | \u001b[0m\u001b[2mmy-app\u001b[0m\u001b[2m | \u001b[0m\u001b]8;;<legend:agents>\u0007\u001b[2;36mcustom         \u001b[0m\u001b]8;;\u0007 \u001b[2mStopped by user\u001b[0m                       \u001b[2m | \u001b[0m\u001b[2mxhigh \u001b[0m\u001b[2m | \u001b[0m                     \u001b[2m       5k\u001b[0m\u001b[2m | \u001b[0m\u001b[2m     \u001b[0m"
+    }
+  ],
+  "160": [
+    {
+      "id": "a",
+      "content": "\u001b[2;32m▸\u001b[0m \u001b[2;36mHaiku 4.5           \u001b[0m\u001b[2m | \u001b[0m\u001b[2mmy-app\u001b[0m\u001b[2m | \u001b[0m\u001b]8;;<legend:agents>\u0007\u001b[2;36mExplore        \u001b[0m\u001b]8;;\u0007 \u001b[2mFind the settings writer\u001b[0m                                  \u001b[2m | \u001b[0m\u001b[2mxhigh \u001b[0m\u001b[2m | \u001b[0m\u001b[2;32m███░░░░░░░░░░░░░ 21%\u001b[0m \u001b[2m 42k/200k\u001b[0m\u001b[2m | \u001b[0m\u001b[2m  12s\u001b[0m"
+    },
+    {
+      "id": "b",
+      "content": "\u001b[2m◦\u001b[0m \u001b[2;36m                    \u001b[0m\u001b[2m | \u001b[0m\u001b[2mmy-app\u001b[0m\u001b[2m | \u001b[0m\u001b]8;;<legend:agents>\u0007\u001b[2;36mPlan           \u001b[0m\u001b]8;;\u0007 \u001b[2mDesign the installer\u001b[0m                                      \u001b[2m | \u001b[0m\u001b[2mxhigh \u001b[0m\u001b[2m | \u001b[0m                     \u001b[2m         \u001b[0m\u001b[2m | \u001b[0m\u001b[2m     \u001b[0m"
+    },
+    {
+      "id": "c",
+      "content": "\u001b[2;34m✓\u001b[0m \u001b[2;36mSonnet 5            \u001b[0m\u001b[2m | \u001b[0m\u001b[2mmy-app\u001b[0m\u001b[2m | \u001b[0m\u001b]8;;<legend:agents>\u0007\u001b[2;36mgeneral-purpose\u001b[0m\u001b]8;;\u0007 \u001b[2mCapture golden outputs\u001b[0m                                    \u001b[2m | \u001b[0m\u001b[2;35mmedium\u001b[0m\u001b[2m | \u001b[0m\u001b[2;33m█████████████░░░ 80%\u001b[0m \u001b[2m160k/200k\u001b[0m\u001b[2m | \u001b[0m\u001b[2m1h02m\u001b[0m"
+    },
+    {
+      "id": "d",
+      "content": "\u001b[2;31m✗\u001b[0m \u001b[2;36mFable 5.1           \u001b[0m\u001b[2m | \u001b[0m\u001b[2mmy-app\u001b[0m\u001b[2m | \u001b[0m\u001b]8;;<legend:agents>\u0007\u001b[2;36mreviewer       \u001b[0m\u001b]8;;\u0007 \u001b[2mReview the diff\u001b[0m                                           \u001b[2m | \u001b[0m\u001b[2mxhigh \u001b[0m\u001b[2m | \u001b[0m\u001b[2;31m███████████████░ 95%\u001b[0m \u001b[2m  950k/1M\u001b[0m\u001b[2m | \u001b[0m\u001b[2m1m01s\u001b[0m"
+    },
+    {
+      "id": "e",
+      "content": "\u001b[2;33m⊘\u001b[0m \u001b[2;36msome-custom-model-w…\u001b[0m\u001b[2m | \u001b[0m\u001b[2mmy-app\u001b[0m\u001b[2m | \u001b[0m\u001b]8;;<legend:agents>\u0007\u001b[2;36mcustom         \u001b[0m\u001b]8;;\u0007 \u001b[2mStopped by user\u001b[0m                                           \u001b[2m | \u001b[0m\u001b[2mxhigh \u001b[0m\u001b[2m | \u001b[0m                     \u001b[2m       5k\u001b[0m\u001b[2m | \u001b[0m\u001b[2m     \u001b[0m"
+    }
+  ],
+  "200": [
+    {
+      "id": "a",
+      "content": "\u001b[2;32m▸\u001b[0m \u001b[2;36mHaiku 4.5           \u001b[0m\u001b[2m | \u001b[0m\u001b[2mmy-app\u001b[0m\u001b[2m | \u001b[0m\u001b]8;;<legend:agents>\u0007\u001b[2;36mExplore        \u001b[0m\u001b]8;;\u0007 \u001b[2mFind the settings writer\u001b[0m                                                                          \u001b[2m | \u001b[0m\u001b[2mxhigh \u001b[0m\u001b[2m | \u001b[0m\u001b[2;32m███░░░░░░░░░░░░░ 21%\u001b[0m \u001b[2m 42k/200k\u001b[0m\u001b[2m | \u001b[0m\u001b[2m  12s\u001b[0m"
+    },
+    {
+      "id": "b",
+      "content": "\u001b[2m◦\u001b[0m \u001b[2;36m                    \u001b[0m\u001b[2m | \u001b[0m\u001b[2mmy-app\u001b[0m\u001b[2m | \u001b[0m\u001b]8;;<legend:agents>\u0007\u001b[2;36mPlan           \u001b[0m\u001b]8;;\u0007 \u001b[2mDesign the installer\u001b[0m                                                                              \u001b[2m | \u001b[0m\u001b[2mxhigh \u001b[0m\u001b[2m | \u001b[0m                     \u001b[2m         \u001b[0m\u001b[2m | \u001b[0m\u001b[2m     \u001b[0m"
+    },
+    {
+      "id": "c",
+      "content": "\u001b[2;34m✓\u001b[0m \u001b[2;36mSonnet 5            \u001b[0m\u001b[2m | \u001b[0m\u001b[2mmy-app\u001b[0m\u001b[2m | \u001b[0m\u001b]8;;<legend:agents>\u0007\u001b[2;36mgeneral-purpose\u001b[0m\u001b]8;;\u0007 \u001b[2mCapture golden outputs\u001b[0m                                                                            \u001b[2m | \u001b[0m\u001b[2;35mmedium\u001b[0m\u001b[2m | \u001b[0m\u001b[2;33m█████████████░░░ 80%\u001b[0m \u001b[2m160k/200k\u001b[0m\u001b[2m | \u001b[0m\u001b[2m1h02m\u001b[0m"
+    },
+    {
+      "id": "d",
+      "content": "\u001b[2;31m✗\u001b[0m \u001b[2;36mFable 5.1           \u001b[0m\u001b[2m | \u001b[0m\u001b[2mmy-app\u001b[0m\u001b[2m | \u001b[0m\u001b]8;;<legend:agents>\u0007\u001b[2;36mreviewer       \u001b[0m\u001b]8;;\u0007 \u001b[2mReview the diff\u001b[0m                                                                                   \u001b[2m | \u001b[0m\u001b[2mxhigh \u001b[0m\u001b[2m | \u001b[0m\u001b[2;31m███████████████░ 95%\u001b[0m \u001b[2m  950k/1M\u001b[0m\u001b[2m | \u001b[0m\u001b[2m1m01s\u001b[0m"
+    },
+    {
+      "id": "e",
+      "content": "\u001b[2;33m⊘\u001b[0m \u001b[2;36msome-custom-model-w…\u001b[0m\u001b[2m | \u001b[0m\u001b[2mmy-app\u001b[0m\u001b[2m | \u001b[0m\u001b]8;;<legend:agents>\u0007\u001b[2;36mcustom         \u001b[0m\u001b]8;;\u0007 \u001b[2mStopped by user\u001b[0m                                                                                   \u001b[2m | \u001b[0m\u001b[2mxhigh \u001b[0m\u001b[2m | \u001b[0m                     \u001b[2m       5k\u001b[0m\u001b[2m | \u001b[0m\u001b[2m     \u001b[0m"
+    }
+  ]
+}

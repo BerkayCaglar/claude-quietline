@@ -1,0 +1,56 @@
+{
+  "40": [
+    {
+      "id": "e1",
+      "content": "\u001b[2;32m▸\u001b[0m \u001b[2;36mOpus 5\u001b[0m\u001b[2m | \u001b[0m\u001b[2mmy-app\u001b[0m\u001b[2m | \u001b[0m\u001b]8;;<legend:agents>\u0007\u001b[2;36mgeneral-purpose\u001b[0m\u001b]8;;\u0007\u001b[2m | \u001b[0m\u001b[2;32m██░░░░░░ 25%\u001b[0m \u001b[2m50k/200k\u001b[0m\u001b[2m | \u001b[0m\u001b[2m20s\u001b[0m"
+    }
+  ],
+  "60": [
+    {
+      "id": "e1",
+      "content": "\u001b[2;32m▸\u001b[0m \u001b[2;36mOpus 5\u001b[0m\u001b[2m | \u001b[0m\u001b[2mmy-app\u001b[0m\u001b[2m | \u001b[0m\u001b]8;;<legend:agents>\u0007\u001b[2;36mgeneral-purpose\u001b[0m\u001b]8;;\u0007\u001b[2m | \u001b[0m\u001b[2;32m██░░░░░░ 25%\u001b[0m \u001b[2m50k/200k\u001b[0m\u001b[2m | \u001b[0m\u001b[2m20s\u001b[0m"
+    }
+  ],
+  "80": [
+    {
+      "id": "e1",
+      "content": "\u001b[2;32m▸\u001b[0m \u001b[2;36mOpus 5\u001b[0m\u001b[2m | \u001b[0m\u001b[2mmy-app\u001b[0m\u001b[2m | \u001b[0m\u001b]8;;<legend:agents>\u0007\u001b[2;36mgeneral-purpose\u001b[0m\u001b]8;;\u0007 \u001b[2mWidth comes…\u001b[0m\u001b[2m | \u001b[0m\u001b[2;32m██░░░░░░ 25%\u001b[0m \u001b[2m50k/200k\u001b[0m\u001b[2m | \u001b[0m\u001b[2m20s\u001b[0m"
+    }
+  ],
+  "100": [
+    {
+      "id": "e1",
+      "content": "\u001b[2;32m▸\u001b[0m \u001b[2;36mOpus 5\u001b[0m\u001b[2m | \u001b[0m\u001b[2mmy-app\u001b[0m\u001b[2m | \u001b[0m\u001b]8;;<legend:agents>\u0007\u001b[2;36mgeneral-purpose\u001b[0m\u001b]8;;\u0007 \u001b[2mWidth comes from COLUMNS, the…\u001b[0m\u001b[2m | \u001b[0m\u001b[2;32m███░░░░░░░ 25%\u001b[0m \u001b[2m50k/200k\u001b[0m\u001b[2m | \u001b[0m\u001b[2m20s\u001b[0m"
+    }
+  ],
+  "120": [
+    {
+      "id": "e1",
+      "content": "\u001b[2;32m▸\u001b[0m \u001b[2;36mOpus 5\u001b[0m\u001b[2m | \u001b[0m\u001b[2mmy-app\u001b[0m\u001b[2m | \u001b[0m\u001b]8;;<legend:agents>\u0007\u001b[2;36mgeneral-purpose\u001b[0m\u001b]8;;\u0007 \u001b[2mWidth comes from COLUMNS, then the 120 default\u001b[0m    \u001b[2m | \u001b[0m\u001b[2;32m███░░░░░░░ 25%\u001b[0m \u001b[2m50k/200k\u001b[0m\u001b[2m | \u001b[0m\u001b[2m20s\u001b[0m"
+    }
+  ],
+  "140": [
+    {
+      "id": "e1",
+      "content": "\u001b[2;32m▸\u001b[0m \u001b[2;36mOpus 5\u001b[0m\u001b[2m | \u001b[0m\u001b[2mmy-app\u001b[0m\u001b[2m | \u001b[0m\u001b]8;;<legend:agents>\u0007\u001b[2;36mgeneral-purpose\u001b[0m\u001b]8;;\u0007 \u001b[2mWidth comes from COLUMNS, then the 120 default\u001b[0m                  \u001b[2m | \u001b[0m\u001b[2;32m████░░░░░░░░░░░░ 25%\u001b[0m \u001b[2m50k/200k\u001b[0m\u001b[2m | \u001b[0m\u001b[2m20s\u001b[0m"
+    }
+  ],
+  "160": [
+    {
+      "id": "e1",
+      "content": "\u001b[2;32m▸\u001b[0m \u001b[2;36mOpus 5\u001b[0m\u001b[2m | \u001b[0m\u001b[2mmy-app\u001b[0m\u001b[2m | \u001b[0m\u001b]8;;<legend:agents>\u0007\u001b[2;36mgeneral-purpose\u001b[0m\u001b]8;;\u0007 \u001b[2mWidth comes from COLUMNS, then the 120 default\u001b[0m                                      \u001b[2m | \u001b[0m\u001b[2;32m████░░░░░░░░░░░░ 25%\u001b[0m \u001b[2m50k/200k\u001b[0m\u001b[2m | \u001b[0m\u001b[2m20s\u001b[0m"
+    }
+  ],
+  "200": [
+    {
+      "id": "e1",
+      "content": "\u001b[2;32m▸\u001b[0m \u001b[2;36mOpus 5\u001b[0m\u001b[2m | \u001b[0m\u001b[2mmy-app\u001b[0m\u001b[2m | \u001b[0m\u001b]8;;<legend:agents>\u0007\u001b[2;36mgeneral-purpose\u001b[0m\u001b]8;;\u0007 \u001b[2mWidth comes from COLUMNS, then the 120 default\u001b[0m                                                                              \u001b[2m | \u001b[0m\u001b[2;32m████░░░░░░░░░░░░ 25%\u001b[0m \u001b[2m50k/200k\u001b[0m\u001b[2m | \u001b[0m\u001b[2m20s\u001b[0m"
+    }
+  ],
+  "none": [
+    {
+      "id": "e1",
+      "content": "\u001b[2;32m▸\u001b[0m \u001b[2;36mOpus 5\u001b[0m\u001b[2m | \u001b[0m\u001b[2mmy-app\u001b[0m\u001b[2m | \u001b[0m\u001b]8;;<legend:agents>\u0007\u001b[2;36mgeneral-purpose\u001b[0m\u001b]8;;\u0007 \u001b[2mWidth comes from COLUMNS, then the 120 default\u001b[0m    \u001b[2m | \u001b[0m\u001b[2;32m███░░░░░░░ 25%\u001b[0m \u001b[2m50k/200k\u001b[0m\u001b[2m | \u001b[0m\u001b[2m20s\u001b[0m"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+name: Feature request
+description: A segment or behaviour you would like
+labels: [enhancement]
+body:
+  - type: textarea
+    id: need
+    attributes:
+      label: What would it help you notice or do?
+    validations:
+      required: true
+  - type: textarea
+    id: when
+    attributes:
+      label: When should it appear?
+      description: Every segment stays hidden until it has something to act on. When would this one earn its space?

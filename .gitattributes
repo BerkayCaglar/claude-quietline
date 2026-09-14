@@ -1,0 +1,5 @@
+# LF everywhere: a CRLF shebang line breaks the scripts on macOS and Linux.
+* text=auto eol=lf
+
+# Golden outputs hold raw escape bytes and trailing spaces; never normalize them.
+test/golden/** -text

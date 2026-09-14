@@ -1,0 +1,11 @@
+{
+  "name": "claude-quietline",
+  "version": "0.1.0",
+  "description": "A fast, zero-dependency status line for Claude Code that stays quiet until something needs your attention.",
+  "author": {
+    "name": "Berkay Çağlar"
+  },
+  "homepage": "https://github.com/BerkayCaglar/claude-quietline",
+  "repository": "https://github.com/BerkayCaglar/claude-quietline",
+  "license": "MIT"
+}

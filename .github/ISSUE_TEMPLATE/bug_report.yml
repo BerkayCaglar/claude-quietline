@@ -1,0 +1,26 @@
+name: Bug report
+description: Something renders wrong, or install or uninstall misbehaves
+labels: [bug]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      description: What you saw and what you expected instead. A screenshot of the status line helps.
+    validations:
+      required: true
+  - type: textarea
+    id: doctor
+    attributes:
+      label: Output of doctor
+      description: Run `npx -y claude-quietline@latest doctor` (or `node bin/cli.mjs doctor` from a clone) and paste the output.
+      render: text
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Claude Code version, operating system and terminal
+      placeholder: 2.1.270, Windows 11, VS Code terminal
+    validations:
+      required: true

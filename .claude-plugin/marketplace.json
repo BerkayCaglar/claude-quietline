@@ -1,0 +1,15 @@
+{
+  "name": "claude-quietline",
+  "owner": {
+    "name": "Berkay Çağlar"
+  },
+  "metadata": {
+    "description": "A fast, zero-dependency status line for Claude Code that stays quiet until something needs your attention."
+  },
+  "plugins": [
+    {
+      "name": "claude-quietline",
+      "source": "./"
+    }
+  ]
+}

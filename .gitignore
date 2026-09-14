@@ -1,0 +1,7 @@
+node_modules/
+*.tgz
+coverage/
+.DS_Store
+
+# Zero dependencies: a lockfile adds nothing, and inside a plugin cache it triggers an install.
+package-lock.json

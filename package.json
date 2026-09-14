@@ -1,0 +1,39 @@
+{
+  "name": "claude-quietline",
+  "version": "0.1.0",
+  "description": "A fast, zero-dependency status line for Claude Code that stays quiet until something needs your attention.",
+  "type": "module",
+  "bin": {
+    "claude-quietline": "bin/cli.mjs"
+  },
+  "files": [
+    "bin/",
+    "src/",
+    "docs/legend/",
+    "INSTALL.md"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "test": "node --test \"test/**/*.test.mjs\""
+  },
+  "keywords": [
+    "claude-code",
+    "claude",
+    "statusline",
+    "status-line",
+    "cli",
+    "terminal"
+  ],
+  "author": "Berkay Çağlar",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BerkayCaglar/claude-quietline.git"
+  },
+  "homepage": "https://github.com/BerkayCaglar/claude-quietline#readme",
+  "bugs": {
+    "url": "https://github.com/BerkayCaglar/claude-quietline/issues"
+  }
+}

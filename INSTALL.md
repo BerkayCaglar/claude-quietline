@@ -29,8 +29,8 @@ If git is not available but npm is, skip the clone and replace `node "<clone>/bi
 node "<clone>/bin/cli.mjs" install --dry-run
 ```
 
-Show the user the output: the files it will copy and how `statusLine` and `subagentStatusLine`
-in their `settings.json` will change. If they already have a status line, tell them it will be
+Show the user the output: the files it will copy and how `statusLine` in their `settings.json`
+will change. If they already have a status line, tell them it will be
 replaced and that `uninstall` puts it back.
 
 ## 4. Confirm

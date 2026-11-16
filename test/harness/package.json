@@ -1,0 +1,13 @@
+{
+  "name": "claude-quietline-harness",
+  "private": true,
+  "description": "Dev-only checks that need a browser or a real Claude Code: npm run test:visual and npm run test:e2e from the repository root. Kept apart so the package itself stays free of dependencies.",
+  "type": "module",
+  "dependencies": {
+    "@lydell/node-pty": "1.1.0",
+    "@xterm/addon-webgl": "0.20.0-beta.329",
+    "@xterm/headless": "6.1.0-beta.334",
+    "@xterm/xterm": "6.1.0-beta.336",
+    "puppeteer-core": "25.17.0"
+  }
+}

@@ -1,6 +1,6 @@
 {
   "name": "claude-quietline",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "A fast, zero-dependency status line for Claude Code that stays quiet until something needs your attention.",
   "type": "module",
   "bin": {
@@ -17,6 +17,8 @@
   },
   "scripts": {
     "test": "node --test \"test/**/*.test.mjs\"",
+    "test:visual": "node --test test/harness/bar.check.mjs",
+    "test:e2e": "node --test test/harness/claude.check.mjs",
     "media": "node scripts/media.mjs"
   },
   "keywords": [

@@ -16,16 +16,18 @@ export const SOURCE_ROOT = fileURLToPath(new URL('../../', import.meta.url));
 export const MIN_NODE_MAJOR = 22;
 
 const RUNTIME = ['bin', 'src', 'docs/legend', 'package.json'];
-const ENTRIES = { statusLine: 'bin/statusline.mjs', subagentStatusLine: 'bin/subagent-statusline.mjs' };
+const ENTRIES = { statusLine: 'bin/statusline.mjs' };
 const KEYS = Object.keys(ENTRIES);
+// Keys an earlier version wrote and this one takes back out. Claude Code 2.1.323 removed the
+// `subagentStatusLine` setting (agent rows always use the default look), which 0.1.x installed.
+const RETIRED_KEYS = ['subagentStatusLine'];
+// Claude Code re-runs the line on events only; the cache age and the reset times count up while
+// nothing happens, so the line also refreshes on a timer. A user's own value is kept.
+export const REFRESH_SECONDS = 30;
 
 const SAMPLE_MAIN = JSON.stringify({
     model: { display_name: 'claude-quietline check' },
     context_window: { used_percentage: 12, context_window_size: 200_000, total_input_tokens: 24_000 },
-});
-const SAMPLE_AGENTS = JSON.stringify({
-    columns: 100,
-    tasks: [{ id: 'check', name: 'install-check', status: 'running', description: 'verifying the install', model: 'claude-opus-5', contextWindowSize: 200_000, tokenCount: 24_000 }],
 });
 
 export class InstallError extends Error {}
@@ -164,19 +166,39 @@ function verify(commands, env) {
     if (!main.ok || !main.stdout.includes('claude-quietline check')) {
         throw new InstallError(`The status line did not render through ${shell.name}: ${main.stderr || 'no output'}. settings.json was not changed.`);
     }
-    const agents = runInShell(shell, commands.subagentStatusLine, SAMPLE_AGENTS, env);
-    if (!agents.ok || !agents.stdout.includes('"id":"check"')) {
-        throw new InstallError(`The agent rows did not render through ${shell.name}: ${agents.stderr || 'no output'}. settings.json was not changed.`);
-    }
-    return { shell: shell.name, node: node.version, mainMs: main.ms, agentsMs: agents.ms };
+    return { shell: shell.name, node: node.version, mainMs: main.ms };
 }
 
 const isObject = (v) => v !== null && typeof v === 'object' && !Array.isArray(v);
 
-// Keeps Claude Code-level options the user set on the entry (padding, refreshInterval, ...).
-function applyCommands(settings, commands) {
-    for (const key of KEYS) settings[key] = { ...(isObject(settings[key]) ? settings[key] : {}), type: 'command', command: commands[key] };
-    return settings;
+const describe = (value) => (value === undefined ? '(not set)' : (value?.command ?? JSON.stringify(value)));
+
+// Puts a key back the way install found it, if it still holds what install wrote there. A key
+// Claude Code no longer reads is taken out instead: what it held before would be ignored too.
+function restoreKey(settings, key, entry) {
+    if (!entry || settings[key]?.command !== entry.command) return 'left alone: it no longer points at claude-quietline';
+    if (RETIRED_KEYS.includes(key)) {
+        delete settings[key];
+        return 'removed';
+    }
+    if (entry.previous?.present) {
+        settings[key] = entry.previous.value;
+        return `restored: ${describe(entry.previous.value)}`;
+    }
+    delete settings[key];
+    return 'removed';
+}
+
+// Keeps Claude Code-level options the user set on the entry (padding, refreshInterval, ...), and
+// takes back the keys an earlier version installed that Claude Code no longer reads.
+function applyCommands(settings, commands, manifest) {
+    for (const key of KEYS) {
+        const own = isObject(settings[key]) ? settings[key] : {};
+        settings[key] = { ...own, type: 'command', command: commands[key], refreshInterval: own.refreshInterval ?? REFRESH_SECONDS };
+    }
+    const retired = {};
+    for (const key of RETIRED_KEYS) if (manifest?.keys?.[key]) retired[key] = restoreKey(settings, key, manifest.keys[key]);
+    return { settings, retired };
 }
 
 // What uninstall should restore. A value that is already ours keeps whatever the manifest
@@ -193,8 +215,6 @@ function recordPrevious(settings, manifest, commands) {
     );
 }
 
-const describe = (value) => (value === undefined ? '(not set)' : (value?.command ?? JSON.stringify(value)));
-
 export async function install({ env = process.env, dev = false, dryRun = false, sourceRoot = SOURCE_ROOT } = {}) {
     const loc = locations(env);
     const root = dev ? checkDevSource(sourceRoot) : loc.installDir;
@@ -202,13 +222,23 @@ export async function install({ env = process.env, dev = false, dryRun = false, 
     const manifest = readJsonFile(loc.manifest);
 
     if (dryRun) {
-        const preview = await updateSettings(loc.settings, (s) => applyCommands(s, commands), { dryRun: true });
+        let retired;
+        const preview = await updateSettings(
+            loc.settings,
+            (s) => {
+                const applied = applyCommands(s, commands, manifest);
+                retired = applied.retired;
+                return applied.settings;
+            },
+            { dryRun: true },
+        );
         return {
             dryRun: true,
             mode: dev ? 'dev' : 'copy',
             root,
             files: dev ? [] : runtimeFiles(sourceRoot),
             changes: KEYS.map((key) => ({ key, from: describe(preview.before[key]), to: commands[key] })),
+            retired,
         };
     }
 
@@ -216,11 +246,14 @@ export async function install({ env = process.env, dev = false, dryRun = false, 
     const verification = verify(commands, env);
 
     let previous;
+    let retired;
     const result = await updateSettings(
         loc.settings,
         (s) => {
             previous = recordPrevious(s, manifest, commands);
-            return applyCommands(s, commands);
+            const applied = applyCommands(s, commands, manifest);
+            retired = applied.retired;
+            return applied.settings;
         },
         { backupDir: loc.backups },
     );
@@ -229,8 +262,10 @@ export async function install({ env = process.env, dev = false, dryRun = false, 
     const nextManifest = { name: PACKAGE_NAME, version: packageVersion(sourceRoot), mode: dev ? 'dev' : 'copy', root, keys };
     mkdirSync(loc.installDir, { recursive: true });
     await replaceFile(loc.manifest, `${JSON.stringify(nextManifest, null, 2)}\n`);
+    // 0.1.x kept the session's effort level here for the agent rows; nothing reads it now.
+    rmSync(join(loc.installDir, 'state'), { recursive: true, force: true });
 
-    return { dryRun: false, mode: nextManifest.mode, root, version: nextManifest.version, installDir: loc.installDir, copied, verification, settingsChanged: result.changed, backupPath: result.backupPath };
+    return { dryRun: false, mode: nextManifest.mode, root, version: nextManifest.version, installDir: loc.installDir, copied, verification, retired, settingsChanged: result.changed, backupPath: result.backupPath };
 }
 
 export async function uninstall({ env = process.env, dryRun = false } = {}) {
@@ -238,30 +273,21 @@ export async function uninstall({ env = process.env, dryRun = false } = {}) {
     const manifest = readJsonFile(loc.manifest);
     if (!manifest) return { installed: false, installDir: loc.installDir };
 
+    // Every key the manifest recorded, so an install from an older version gives back the keys
+    // it wrote too.
+    const recorded = [...new Set([...KEYS, ...Object.keys(manifest.keys ?? {})])];
     let outcome;
     const result = await updateSettings(
         loc.settings,
         (s) => {
-            outcome = {};
-            for (const key of KEYS) {
-                const entry = manifest.keys?.[key];
-                if (!entry || s[key]?.command !== entry.command) {
-                    outcome[key] = 'left alone: it no longer points at claude-quietline';
-                } else if (entry.previous?.present) {
-                    s[key] = entry.previous.value;
-                    outcome[key] = `restored: ${describe(entry.previous.value)}`;
-                } else {
-                    delete s[key];
-                    outcome[key] = 'removed';
-                }
-            }
+            outcome = Object.fromEntries(recorded.map((key) => [key, restoreKey(s, key, manifest.keys?.[key])]));
             return s;
         },
         { backupDir: loc.backups, dryRun },
     );
 
     const warnings = [];
-    for (const key of KEYS) {
+    for (const key of recorded) {
         const previous = manifest.keys?.[key]?.previous;
         const script = previous?.present ? scriptOf(previous.value?.command) : null;
         if (outcome[key].startsWith('restored') && script && !existsSync(script)) {
@@ -311,6 +337,12 @@ export function doctor({ env = process.env, cwd = process.cwd() } = {}) {
         }
     }
 
+    for (const key of RETIRED_KEYS) {
+        if (!settings?.[key]) continue;
+        const ours = settings[key].command != null && settings[key].command === manifest?.keys?.[key]?.command;
+        add('warn', key, `Claude Code 2.1.323 and later ignore it; ${ours ? 'run install again to take it out' : 'you can delete it'}`);
+    }
+
     for (const name of ['settings.local.json', 'settings.json']) {
         const project = join(cwd, '.claude', name);
         if (project !== loc.settings && readJsonFile(project)?.statusLine) add('warn', project, 'sets its own statusLine, which overrides yours in this project');
@@ -323,10 +355,6 @@ export function doctor({ env = process.env, cwd = process.cwd() } = {}) {
     if (node.ok && commands.statusLine) {
         const r = runInShell(shell, commands.statusLine, SAMPLE_MAIN, env);
         add(r.ok && r.stdout ? 'ok' : 'fail', 'status line renders', r.ok ? `${Math.round(r.ms)} ms through ${shell.name}` : r.stderr);
-    }
-    if (node.ok && commands.subagentStatusLine) {
-        const r = runInShell(shell, commands.subagentStatusLine, SAMPLE_AGENTS, env);
-        add(r.ok && r.stdout ? 'ok' : 'fail', 'agent rows render', r.ok ? `${Math.round(r.ms)} ms through ${shell.name}` : r.stderr);
     }
     if (process.platform === 'win32' && !env.FORCE_HYPERLINK) {
         add('warn', 'hyperlinks', 'VS Code and Windows Terminal may print links as plain text; start Claude Code with FORCE_HYPERLINK=1');

@@ -28,11 +28,6 @@ const MAIN_INPUT = JSON.stringify({
     context_window: { used_percentage: 19, context_window_size: 1_000_000, total_input_tokens: 192_300 },
 });
 
-const AGENT_INPUT = JSON.stringify({
-    columns: 120,
-    tasks: [{ id: 't', type: 'local_agent', status: 'running', description: 'List files', model: 'claude-opus-5', contextWindowSize: 1_000_000, tokenCount: 84_369, startTime: Date.now() - 5000 }],
-});
-
 let bare;
 before(() => {
     bare = medianMs(['-e', ''], '');
@@ -41,9 +36,4 @@ before(() => {
 test('the status line adds little over starting Node itself', () => {
     const line = medianMs([join(SOURCE_ROOT, 'bin', 'statusline.mjs')], MAIN_INPUT);
     assert.ok(line - bare < BUDGET_MS, `status line ${line.toFixed(1)} ms, bare node ${bare.toFixed(1)} ms`);
-});
-
-test('the agent rows add little over starting Node itself', () => {
-    const rows = medianMs([join(SOURCE_ROOT, 'bin', 'subagent-statusline.mjs')], AGENT_INPUT);
-    assert.ok(rows - bare < BUDGET_MS, `agent rows ${rows.toFixed(1)} ms, bare node ${bare.toFixed(1)} ms`);
 });

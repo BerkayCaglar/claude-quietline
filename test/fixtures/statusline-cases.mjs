@@ -216,6 +216,27 @@ export const STATUSLINE_CASES = [
     cacheCase('cache-api-cold', { ageMs: 12.5 * MIN, ttl: '5m', subscriber: false }),
     cacheCase('cache-subscriber-cold-hours', { ageMs: 2 * HOUR + 5.5 * MIN, ttl: '1h', subscriber: true }),
     {
+        // What the next message writes to the cache again, as Claude Code reports it.
+        name: 'cache-cold-recache',
+        build(now, opts) {
+            const built = cacheCase('cache-cold-recache', { ageMs: 75.5 * MIN, ttl: '1h', subscriber: true }).build(now, opts);
+            built.data.prompt_cache = { ...built.data.prompt_cache, recache_tokens_if_cold: 150_000 };
+            return built;
+        },
+    },
+    {
+        // A Claude gateway's spend cap, alongside no plan windows.
+        name: 'limits-spend',
+        build: (now, { projectDir }) => ({
+            data: {
+                model: OPUS_1M,
+                workspace: workspace(projectDir),
+                context_window: contextWindow(90_000, 1_000_000),
+                rate_limits: { spend_limit: { used_percentage: 92, resets_at: epochS(now + 2 * DAY + 3.5 * HOUR), used_usd: 184, limit_usd: 200, period: 'monthly' } },
+            },
+        }),
+    },
+    {
         name: 'long-session-name',
         build: (now, { projectDir }) => ({
             data: {

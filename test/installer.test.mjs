@@ -5,7 +5,7 @@ import { tmpdir } from 'node:os';
 import { join, relative } from 'node:path';
 import { test } from 'node:test';
 import { fileURLToPath } from 'node:url';
-import { InstallError, SOURCE_ROOT, doctor, install, runInShell, statusLineShell, uninstall } from '../src/install/installer.mjs';
+import { InstallError, REFRESH_SECONDS, SOURCE_ROOT, doctor, install, runInShell, statusLineShell, uninstall } from '../src/install/installer.mjs';
 
 const slash = (p) => p.replace(/\\/g, '/');
 const PREVIOUS = `${JSON.stringify({ model: 'opus', statusLine: { type: 'command', command: 'node ~/.claude/statusline.mjs', padding: 1 } }, null, 2)}\n`;
@@ -40,14 +40,30 @@ function snapshot(dir) {
 
 const readSettings = (path) => JSON.parse(readFileSync(path, 'utf8'));
 
-test('install points both keys at an installed copy and keeps everything else', async (t) => {
+// What 0.1.x left behind: a subagentStatusLine it wrote and recorded, and the effort state the
+// agent rows read. `previous` is what that key held before 0.1.x was installed.
+function legacyInstall(dir, settingsPath, previous = { present: false }) {
+    const installDir = join(dir, 'claude-quietline');
+    const command = `node '${slash(join(installDir, 'bin', 'subagent-statusline.mjs'))}'`;
+    const manifestPath = join(installDir, 'install.json');
+    const manifest = JSON.parse(readFileSync(manifestPath, 'utf8'));
+    manifest.version = '0.1.1';
+    manifest.keys.subagentStatusLine = { command, previous };
+    writeFileSync(manifestPath, JSON.stringify(manifest, null, 2));
+    const settings = readSettings(settingsPath);
+    settings.subagentStatusLine = { type: 'command', command };
+    writeFileSync(settingsPath, JSON.stringify(settings, null, 2));
+    mkdirSync(join(installDir, 'state'), { recursive: true });
+    writeFileSync(join(installDir, 'state', 'sess.json'), '{"effort":"high"}');
+}
+
+test('install points statusLine at an installed copy, refreshing on a timer, and keeps everything else', async (t) => {
     const { dir, env, settingsPath } = configFolder(t, PREVIOUS);
     const result = await install({ env });
     const bin = slash(join(dir, 'claude-quietline', 'bin'));
     assert.deepEqual(readSettings(settingsPath), {
         model: 'opus',
-        statusLine: { type: 'command', command: `node '${bin}/statusline.mjs'`, padding: 1 },
-        subagentStatusLine: { type: 'command', command: `node '${bin}/subagent-statusline.mjs'` },
+        statusLine: { type: 'command', command: `node '${bin}/statusline.mjs'`, padding: 1, refreshInterval: REFRESH_SECONDS },
     });
     assert.ok(existsSync(join(dir, 'claude-quietline', 'docs', 'legend', 'index.md')));
     assert.ok(!existsSync(join(dir, 'claude-quietline', 'test')));
@@ -96,11 +112,62 @@ test('uninstall restores the previous settings byte for byte; a second uninstall
     const first = await uninstall({ env });
     assert.equal(readFileSync(settingsPath, 'utf8'), PREVIOUS);
     assert.match(first.outcome.statusLine, /^restored/);
-    assert.equal(first.outcome.subagentStatusLine, 'removed');
+    assert.deepEqual(Object.keys(first.outcome), ['statusLine']);
     assert.deepEqual(readdirSync(join(dir, 'claude-quietline')), ['backups']);
     const second = await uninstall({ env });
     assert.equal(second.installed, false);
     assert.equal(readFileSync(settingsPath, 'utf8'), PREVIOUS);
+});
+
+test('a refreshInterval of your own is kept', async (t) => {
+    const own = JSON.stringify({ statusLine: { type: 'command', command: 'x', refreshInterval: 5 } });
+    const { env, settingsPath } = configFolder(t, own);
+    await install({ env });
+    assert.equal(readSettings(settingsPath).statusLine.refreshInterval, 5);
+});
+
+test('installing over 0.1.x takes out the subagentStatusLine it wrote and its effort state', async (t) => {
+    const { dir, env, settingsPath } = configFolder(t, PREVIOUS);
+    await install({ env });
+    legacyInstall(dir, settingsPath);
+    assert.ok(doctor({ env, cwd: dir }).some((c) => c.status === 'warn' && c.label === 'subagentStatusLine'));
+    const result = await install({ env });
+    assert.deepEqual(result.retired, { subagentStatusLine: 'removed' });
+    assert.ok(!('subagentStatusLine' in readSettings(settingsPath)));
+    assert.ok(!existsSync(join(dir, 'claude-quietline', 'state')));
+    assert.ok(!('subagentStatusLine' in JSON.parse(readFileSync(join(dir, 'claude-quietline', 'install.json'), 'utf8')).keys));
+    assert.ok(!doctor({ env, cwd: dir }).some((c) => c.label === 'subagentStatusLine'));
+});
+
+test('installing over 0.1.x does not put back the subagentStatusLine it replaced, which nothing reads', async (t) => {
+    const { dir, env, settingsPath } = configFolder(t, PREVIOUS);
+    await install({ env });
+    legacyInstall(dir, settingsPath, { present: true, value: { type: 'command', command: 'my-agent-rows' } });
+    const result = await install({ env });
+    assert.deepEqual(result.retired, { subagentStatusLine: 'removed' });
+    assert.ok(!('subagentStatusLine' in readSettings(settingsPath)));
+});
+
+test('a subagentStatusLine of your own is left alone, and doctor says it is ignored', async (t) => {
+    const { dir, env, settingsPath } = configFolder(t, PREVIOUS);
+    await install({ env });
+    legacyInstall(dir, settingsPath);
+    const settings = readSettings(settingsPath);
+    settings.subagentStatusLine = { type: 'command', command: 'my-agent-rows' };
+    writeFileSync(settingsPath, JSON.stringify(settings, null, 2));
+    const result = await install({ env });
+    assert.match(result.retired.subagentStatusLine, /^left alone/);
+    assert.equal(readSettings(settingsPath).subagentStatusLine.command, 'my-agent-rows');
+    assert.ok(doctor({ env, cwd: dir }).some((c) => c.label === 'subagentStatusLine' && /delete it/.test(c.detail)));
+});
+
+test('uninstalling a 0.1.x install gives back statusLine and takes out subagentStatusLine', async (t) => {
+    const { dir, env, settingsPath } = configFolder(t, PREVIOUS);
+    await install({ env });
+    legacyInstall(dir, settingsPath, { present: true, value: { type: 'command', command: 'my-agent-rows' } });
+    const result = await uninstall({ env });
+    assert.equal(result.outcome.subagentStatusLine, 'removed');
+    assert.equal(readFileSync(settingsPath, 'utf8').trim(), PREVIOUS.trim());
 });
 
 test('installing over another tool records that tool for uninstall', async (t) => {

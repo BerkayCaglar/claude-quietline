@@ -27,6 +27,7 @@ function printInstall(r) {
         if (r.mode === 'copy') console.log(`  ${r.files.length} files would be copied to ${r.root}`);
         else console.log(`  settings.json would point at the checkout ${r.root}`);
         for (const c of r.changes) console.log(`  ${c.key}:\n    from ${c.from}\n    to   ${c.to}`);
+        for (const [key, what] of Object.entries(r.retired ?? {})) console.log(`  ${key} (no longer read by Claude Code): ${what}`);
         return 0;
     }
     if (r.mode === 'copy') {
@@ -35,7 +36,8 @@ function printInstall(r) {
         console.log(`[warn] dev mode: every session now runs the checkout at ${r.root}`);
     }
     const v = r.verification;
-    console.log(`[ok] renders through ${v.shell} with Node.js ${v.node}: status line ${Math.round(v.mainMs)} ms, agent rows ${Math.round(v.agentsMs)} ms`);
+    console.log(`[ok] renders through ${v.shell} with Node.js ${v.node} in ${Math.round(v.mainMs)} ms`);
+    for (const [key, what] of Object.entries(r.retired ?? {})) console.log(`[ok] ${key}, which Claude Code 2.1.323 and later no longer read: ${what}`);
     console.log(r.settingsChanged ? `[ok] settings.json updated (backup: ${r.backupPath ?? 'none, the file was new'})` : '[ok] settings.json already pointed here; nothing to change');
     console.log('Running Claude Code sessions pick the change up on their next status line refresh.');
     return 0;

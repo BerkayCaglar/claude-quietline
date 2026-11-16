@@ -1,4 +1,4 @@
-// ANSI styling and terminal-width helpers shared by both status lines.
+// ANSI styling and terminal-width helpers.
 
 export const R = '\x1b[0m';
 export const DIM = '\x1b[2m';
@@ -8,12 +8,18 @@ export const GREEN = dim(32);
 export const YELLOW = dim(33);
 export const RED = dim(31);
 export const MAGENTA = dim(35);
-export const BLUE = dim(34);
 
 export const SEP = `${DIM} | ${R}`;
-export const SEP_WIDTH = 3;
-export const BAR_FULL = '█';
-export const BAR_EMPTY = '░';
+// The bar is cells painted with a background color, not glyphs. A terminal that draws block
+// characters from the font (VS Code's DOM renderer, which it uses when GPU acceleration is off)
+// lets Consolas's `░` spill into the row above and turns it into a faint dot pattern once dimmed;
+// a background fills the cell exactly in every font. Dim does not reach a background, so these
+// are fixed, muted 256-color shades rather than the terminal's bright palette; Claude Code passes
+// 256-color backgrounds through unchanged (recorded from 2.1.325) and turns RGB into them anyway.
+// They suit a dark theme; on a light one the track reads as a dark block.
+const bg = (n) => `\x1b[48;5;${n}m`;
+export const BAR_TRACK = bg(238); // #444444
+export const pctBackground = (p) => (p >= 90 ? bg(124) : p >= 70 ? bg(136) : bg(29)); // #af0000 #af8700 #00875f
 
 // Closes any SGR style and any hyperlink a cut left open; an unterminated OSC 8 would
 // swallow the rest of the terminal line.

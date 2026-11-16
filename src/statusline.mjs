@@ -2,11 +2,12 @@
 // Every segment stays hidden until it has something worth saying. Pure: what the stdin
 // payload does not carry arrives in `inputs`, and the clock in `now`.
 
-import { BAR_EMPTY, BAR_FULL, CYAN, DIM, MAGENTA, R, RED, RESET_ALL, SEP, YELLOW, pctColor, visLen, visTruncate } from './ansi.mjs';
+import { BAR_TRACK, CYAN, DIM, MAGENTA, R, RED, RESET_ALL, SEP, YELLOW, pctBackground, pctColor, visLen, visTruncate } from './ansi.mjs';
 import { baseName, fmtAge, fmtEta, fmtTokens, truncate } from './format.mjs';
 import { legendLink as link } from './legend.mjs';
 
 const BAR_MARK = '┃'; // auto-compact threshold marker
+const BAR_MARK_COLOR = '\x1b[97m'; // bright white, readable on every bar color
 const MIN = 60_000;
 const CACHE_TTL_MS = { '5m': 5 * MIN, '1h': 60 * MIN };
 
@@ -32,20 +33,26 @@ function render(d, ctx, opts) {
     if (used != null) {
         const pct = Number(used);
         const col = pctColor(pct);
-        let seg = '';
+        // The bar stays outside the link: terminals underline a link, and a dashed underline
+        // under a bar of lines reads as a second track.
+        let bar = '';
         if (opts.barWidth > 0) {
             const w = opts.barWidth;
             const filled = Math.min(w, Math.max(0, Math.round((w * pct) / 100)));
-            const cells = Array.from({ length: w }, (_, i) => (i < filled ? BAR_FULL : BAR_EMPTY));
             // Mark where auto-compaction kicks in, unless it sits at the very end.
-            if (ctx.compactPct != null && ctx.compactPct < 99) {
-                const at = Math.min(w - 1, Math.max(0, Math.round((w * ctx.compactPct) / 100)));
-                cells[at] = BAR_MARK;
+            const mark = ctx.compactPct != null && ctx.compactPct < 99 ? Math.min(w - 1, Math.max(0, Math.round((w * ctx.compactPct) / 100))) : -1;
+            // The filled part takes the percentage's color, the rest a neutral gray; the marker
+            // is drawn in bright white over whichever part it falls in.
+            const fill = pctBackground(pct);
+            const styleAt = (i) => (i < filled ? fill : BAR_TRACK) + (i === mark ? BAR_MARK_COLOR : '');
+            const glyphAt = (i) => (i === mark ? BAR_MARK : ' ');
+            for (let i = 0; i < w; i++) {
+                if (i === 0 || styleAt(i) !== styleAt(i - 1)) bar += (i ? R : '') + styleAt(i);
+                bar += glyphAt(i);
             }
-            seg += cells.join('') + ' ';
+            bar += `${R} `;
         }
-        seg += `${Math.round(pct)}%`;
-        seg = col + seg + R;
+        let seg = `${col}${Math.round(pct)}%${R}`;
 
         if (opts.showTokens) {
             // used_percentage is input-only, so pair it with total_input_tokens to match.
@@ -53,7 +60,7 @@ function render(d, ctx, opts) {
             if (ctx.usedTokens != null && size) seg += ` ${DIM}${fmtTokens(ctx.usedTokens)}/${fmtTokens(size)}${R}`;
             else if (size) seg += ` ${DIM}${fmtTokens(size)}${R}`;
         }
-        parts.push(link('ctx', seg));
+        parts.push(bar + link('ctx', seg));
     }
 
     // Headroom before auto-compaction. Compacting is itself a large request (it reads what
@@ -66,7 +73,9 @@ function render(d, ctx, opts) {
 
     if (opts.showCache && ctx.cacheAge != null) {
         const col = ctx.cacheAge >= ctx.cacheTtl ? RED : ctx.cacheAge >= ctx.cacheTtl * 0.75 ? YELLOW : DIM;
-        const label = ctx.cacheAge >= ctx.cacheTtl ? 'cache cold' : `cache ${fmtAge(ctx.cacheAge)}`;
+        // Once cold, the number is what the next message writes to the cache again: the price
+        // of picking the conversation back up, as Claude Code itself counts it.
+        const label = ctx.cacheAge < ctx.cacheTtl ? `cache ${fmtAge(ctx.cacheAge)}` : ctx.recacheTokens ? `cache cold ${fmtTokens(ctx.recacheTokens)}` : 'cache cold';
         parts.push(link('cacheage', `${col}${label}${R}`));
     }
 
@@ -131,20 +140,24 @@ function deriveContext(data, compactWindow, now) {
     const cache = promptCacheAge(data?.prompt_cache, now);
     // Below 10 minutes there is nothing to act on; keep the line quiet.
     const cacheAge = cache.age != null && cache.age >= 10 * MIN ? cache.age : null;
+    // Reported since at least Claude Code 2.1.270; null right after a compaction.
+    const recache = Number(data?.prompt_cache?.recache_tokens_if_cold);
+    const recacheTokens = recache > 0 ? recache : null;
 
     const cu = cw.current_usage;
     const cacheTotal = cu ? (cu.input_tokens ?? 0) + (cu.cache_creation_input_tokens ?? 0) + (cu.cache_read_input_tokens ?? 0) : 0;
     const cacheHit = cacheTotal > 0 ? ((cu.cache_read_input_tokens ?? 0) / cacheTotal) * 100 : null;
 
     // Surface plan limits only once they matter, so the line stays quiet the rest of the time.
+    // spend_limit is a Claude gateway's spend cap, with the same shape.
     const limits = [];
-    for (const [key, label] of [['five_hour', '5h'], ['seven_day', '7d']]) {
+    for (const [key, label] of [['five_hour', '5h'], ['seven_day', '7d'], ['spend_limit', 'spend']]) {
         const rl = data?.rate_limits?.[key];
         const pct = rl?.used_percentage;
         if (pct != null && pct >= 70) limits.push({ pct, label: `${label} ${Math.round(pct)}%`, eta: fmtEta(rl.resets_at, now) });
     }
 
-    return { usedTokens, compactAt, compactPct, compactLeft, cacheAge, cacheTtl: cache.ttl, cacheHit, limits };
+    return { usedTokens, compactAt, compactPct, compactLeft, cacheAge, cacheTtl: cache.ttl, recacheTokens, cacheHit, limits };
 }
 
 // inputs.columns: terminal width (0 = unknown); inputs.compactWindow: auto-compact window in

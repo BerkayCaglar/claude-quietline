@@ -11,7 +11,7 @@
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/BerkayCaglar/claude-quietline/main/docs/media/hero-dark.svg">
-  <img alt="The claude-quietline status line and two agent rows under the Claude Code prompt" src="https://raw.githubusercontent.com/BerkayCaglar/claude-quietline/main/docs/media/hero-light.svg" width="100%">
+  <img alt="The claude-quietline status line under the Claude Code prompt" src="https://raw.githubusercontent.com/BerkayCaglar/claude-quietline/main/docs/media/hero-light.svg" width="100%">
 </picture>
 
 </div>
@@ -30,7 +30,6 @@ Needs Node.js 22 or later. Works on macOS, Linux and Windows.
   path that runs at every refresh.
 - **Every segment explains itself.** Ctrl+click (Cmd+click on macOS) a segment to open a short
   page about it.
-- **Agents too.** The rows in the agent panel get the same fields, lined up in columns.
 
 ## A session, as the line tells it
 
@@ -44,10 +43,11 @@ Needs Node.js 22 or later. Works on macOS, Linux and Windows.
 | `┃` inside the bar | an auto-compact window is set — it marks where compaction starts |
 | `compact 20k` | you are past half that window — tokens left before compaction |
 | `cache 47m` | the prompt cache is 10 minutes old or more; yellow at 75% of its lifetime |
-| `cache cold` | the cache has expired — the next message reprocesses the whole conversation |
+| `cache cold 480k` | the cache has expired — the next message writes this many tokens to it again |
 | `cache 12%` | this turn's cache hit rate is below 90% |
 | `200k+` | the context went past 200k tokens |
 | `5h 91%` `(14m)` | a plan usage window is past 70%; the time until it resets joins past 85% |
+| `spend 92%` | a Claude gateway's spend limit is past 70% |
 
 ## In Claude Code
 
@@ -73,8 +73,8 @@ npx -y claude-quietline@latest install
 
 `install` copies the status line into `~/.claude/claude-quietline/` (or
 `$CLAUDE_CONFIG_DIR/claude-quietline/`), checks that it renders through the shell Claude Code
-will use, backs up `settings.json`, and points `statusLine` and `subagentStatusLine` at the copy.
-Nothing else in `settings.json` changes. Add `--dry-run` to see the changes first, and run
+will use, backs up `settings.json`, and points `statusLine` at the copy, refreshing every 30
+seconds unless you set your own `refreshInterval`. Nothing else in `settings.json` changes. Add `--dry-run` to see the changes first, and run
 `install` again to update. Running sessions pick the change up on their next refresh.
 
 <details>
@@ -114,6 +114,15 @@ npx -y claude-quietline@latest uninstall   # put back the status line you had be
 ```
 
 The cache segment needs Claude Code 2.1.251 or later.
+
+<details>
+<summary><b>Agent rows</b></summary>
+
+0.1.x also drew the rows of the agent panel. Claude Code 2.1.323 removed the
+`subagentStatusLine` setting that made this possible: agent rows always use Claude Code's own
+look now. Running `install` again takes the setting back out of `settings.json`.
+
+</details>
 
 ## How it stays fast
 
@@ -164,8 +173,8 @@ terminal, or install Node.js system-wide.
 <details>
 <summary><b>The bar is misaligned in a CJK terminal</b></summary>
 
-`█` and `┃` are East Asian Ambiguous width; a terminal set to draw those characters wide shifts
-everything after the bar.
+The auto-compact marker `┃` is East Asian Ambiguous width; a terminal set to draw such
+characters wide shifts everything after the bar.
 
 </details>
 

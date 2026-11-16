@@ -1,10 +1,12 @@
-# Context bar — `███░░░░ 19% 192.3k/1M`
+# Context bar — `19% 192.3k/1M`
 
 How full the context window is. The percentage counts **input tokens only** (input, cache
 reads and cache writes); output tokens are not part of it. The number beside it uses the same
 count: `used/total`.
 
-Colors: green below 70%, yellow from 70%, red from 90%.
+The colored part of the bar is what is used, the gray part what is left. The used part and the
+percentage are green below 70%, yellow from 70%, red from 90%. The bar is painted in fixed,
+muted colors chosen for a dark terminal; on a light one its gray part reads as a dark block.
 
 The `┃` inside the bar is the auto-compact threshold — see [compact](./compact.md).
 

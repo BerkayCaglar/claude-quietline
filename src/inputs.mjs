@@ -1,8 +1,7 @@
-// Everything the renderers need from outside the stdin payload: the payload itself, Claude
-// Code's config folder, the one setting stdin does not carry (the auto-compact window), and the
-// session effort the main line hands over to the agent rows.
+// Everything the renderer needs from outside the stdin payload: the payload itself, Claude
+// Code's config folder, and the one setting stdin does not carry (the auto-compact window).
 
-import { mkdirSync, readdirSync, readFileSync, renameSync, rmSync, statSync, writeFileSync } from 'node:fs';
+import { readFileSync } from 'node:fs';
 import { homedir } from 'node:os';
 import { join } from 'node:path';
 
@@ -63,43 +62,4 @@ export function autoCompactWindow(projectDir, env = process.env) {
         if (window) return window;
     }
     return null;
-}
-
-// The agent panel's payload carries no session effort, neither on stdin nor as CLAUDE_EFFORT,
-// and a subagent that inherits the level has no `effort` of its own (recorded from Claude Code
-// 2.1.270). The main line does receive it, so it leaves it here for the agent rows: one small
-// file per session, written only when the level changes.
-const STATE_MAX_AGE_MS = 7 * 24 * 60 * 60 * 1000;
-const stateDir = (env) => join(configDir(env), 'claude-quietline', 'state');
-const statePath = (sessionId, env) => (/^[\w-]{1,128}$/.test(sessionId ?? '') ? join(stateDir(env), `${sessionId}.json`) : null);
-
-export function sessionEffort(sessionId, env = process.env) {
-    const path = statePath(sessionId, env);
-    return (path && readJson(path)?.effort) || null;
-}
-
-export function rememberSessionEffort(sessionId, effort, env = process.env) {
-    const path = statePath(sessionId, env);
-    if (!path || !effort || readJson(path)?.effort === effort) return;
-    const tmp = `${path}.${process.pid}.tmp`;
-    try {
-        mkdirSync(stateDir(env), { recursive: true });
-        // Through a temp file, so the agent rows never read half a file.
-        writeFileSync(tmp, JSON.stringify({ effort }));
-        renameSync(tmp, path);
-        pruneState(stateDir(env));
-    } catch {
-        // The status line must still render when the folder is read-only or a rename is
-        // refused. The stored level still differs, so the next refresh writes it again.
-        rmSync(tmp, { force: true });
-    }
-}
-
-// Sessions end without saying so; each write clears out files nobody has touched in a week.
-function pruneState(dir) {
-    const cutoff = Date.now() - STATE_MAX_AGE_MS;
-    for (const name of readdirSync(dir)) {
-        const file = join(dir, name);
-        if (statSync(file).mtimeMs < cutoff) rmSync(file, { force: true });
-    }
 }

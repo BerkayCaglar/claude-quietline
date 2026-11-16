@@ -1,4 +1,4 @@
-# `5h 97% (14m)` / `7d 93% (3d14h)`
+# `5h 97% (14m)` / `7d 93% (3d14h)` / `spend 92%`
 
 How much of your Claude subscription's usage limits you have spent, for the 5-hour and the
 7-day window. Each appears only **past 70%**; the time until that window resets, in
@@ -10,7 +10,8 @@ purpose: arrow-like glyphs are East Asian Ambiguous width, and terminals then dr
 the text that follows.
 
 Claude Code sends these only to Pro and Max subscribers, and only after the session's first
-response; with an API key they never appear. `/usage` has the full breakdown.
+response; with an API key they never appear. Behind a Claude gateway that sets a spend limit,
+`spend` is that limit, past 70% the same way. `/usage` has the full breakdown.
 
 ---
 

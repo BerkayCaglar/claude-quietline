@@ -7,7 +7,7 @@ import { hyperlink } from './ansi.mjs';
 
 const LEGEND_DIR = new URL('../docs/legend/', import.meta.url);
 
-export const LEGEND_IDS = ['model', 'cwd', 'session', 'effort', 'ctx', 'compact', 'cacheage', 'cachehit', 'exceeds200k', 'limits', 'agents'];
+export const LEGEND_IDS = ['model', 'cwd', 'session', 'effort', 'ctx', 'compact', 'cacheage', 'cachehit', 'exceeds200k', 'limits'];
 const KNOWN = new Set(LEGEND_IDS);
 
 export const legendUrl = (id) => new URL(`${id}.md`, LEGEND_DIR).href;

@@ -7,10 +7,9 @@ that segment's page.
 - [`cwd`](./cwd.md) — working directory
 - [`session`](./session.md) — session name
 - [`effort`](./effort.md) — reasoning effort
-- [`ctx`](./ctx.md) — context bar: `███░░░░ 19% 192.3k/1M`
+- [`ctx`](./ctx.md) — context bar and `19% 192.3k/1M`
 - [`compact`](./compact.md) — the `┃` marker and `compact 20k`
-- [`cacheage`](./cacheage.md) — `cache 47m` / `cache cold`
+- [`cacheage`](./cacheage.md) — `cache 47m` / `cache cold 480k`
 - [`cachehit`](./cachehit.md) — `cache 12%`
 - [`exceeds200k`](./exceeds200k.md) — `200k+`
-- [`limits`](./limits.md) — `5h 97% (14m)` / `7d 93% (3d14h)`
-- [`agents`](./agents.md) — agent panel rows
+- [`limits`](./limits.md) — `5h 97% (14m)` / `7d 93% (3d14h)` / `spend 92%`
